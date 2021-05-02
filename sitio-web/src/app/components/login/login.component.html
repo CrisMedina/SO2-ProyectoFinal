@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <aside class="col-sm-5">
+            <div class="card bg-light p-5">
+                <article class="card-body">
+                    <h4 class="card-title text-center mb-4 mt-1">Login</h4>
+                    <hr>
+                    <form>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                </div>
+                                <input name="cuenta" [(ngModel)]="user.no_cuenta" class="form-control  ml-1" placeholder="Número de cuenta" type="email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                </div>
+                                <input name="clave" [(ngModel)]="user.clave" class="form-control  ml-1" placeholder="Contraseña" type="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block" (click)="login()"> Login </button>
+                        </div>
+                        
+                        <ngb-alert #selfClosingAlert *ngIf="message" type={{this.alert}} (closed)="message = ''">
+                            {{ message }}
+                          </ngb-alert>
+                        <p class="text-center">¿No tienes cuenta? <a href="register">Regístrate</a></p>
+
+                    </form>
+                </article>
+            </div>
+        </aside>
+    </div>
+</div>

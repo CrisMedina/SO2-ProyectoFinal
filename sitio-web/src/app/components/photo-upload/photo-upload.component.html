@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="card bg-light">
+    <h4 class="card-title text-center mt-5">Subir foto</h4>
+    <hr class="mx-5" />
+    <article class="card-body mb-3" style="margin-left: 25%; margin-right: 25%;">
+      <form>
+        <div class="d-flex justify-content-center mb-3">
+          <img
+            src="{{url}}"
+            alt="Imagen profile"
+            style="width: auto; height: 180px;"
+          />
+        </div>
+        <div class="form-group input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-file"></i> </span>
+          </div>
+          <input hidden #fileInput type="file" accept="image/*" (change)="onSelectFile($event)">
+          <input #labelito class="form-control mr-1" for="fileInput" placeholder="Fotografía" required>
+          <div class="input-group-prepend">
+            <button class="input-group-text" type="button" (click)="fileInput.click()">
+              <i class="fa fa-upload"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-image"></i> </span>
+          </div>
+          <input
+            name="nombre"
+            [(ngModel)]="foto.nombre"
+            class="form-control ml-1"
+            placeholder="Nombre de la imagen"
+            type="text"
+          />
+        </div>
+        <div class="form-group input-group">
+          <textarea
+            name="descripcion"
+            class="form-control ml-1"
+            [(ngModel)]="foto.descripcion"
+            placeholder="Descripcion de la imagen"
+            type="text"
+            rows="3"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block" (click)="subirFoto()">Subir</button>
+        </div>
+        <ngb-alert #selfClosingAlert *ngIf="message" type={{this.alert}} (closed)="message = ''">
+          {{ message }}
+        </ngb-alert>
+      </form>
+    </article>
+  </div>
+</div>

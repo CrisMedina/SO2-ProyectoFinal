@@ -1,0 +1,59 @@
+stages:
+    - release
+    - deploy
+
+release:
+    stage: release
+    image: docker:latest 
+    only:
+        - develop
+    tags:
+        - docker
+    variables:
+        DOCKER_REGISTRY: "docker.io"
+        DOCKER_TLS_CERTDIR: "/certs"
+    before_script:
+        #DOCKERHUB_USER DOCKERHUB_KEY son variables que creamos en GitLab
+        - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_KEY}
+    script:
+        #Se crean las imagenes
+        - docker build -t "${DOCKERHUB_USER}/sitio-web:v1"  ./web-app
+        - docker build -t "${DOCKERHUB_USER}/api-nodejs:v1" ./api-rest
+
+        #Se suben las imagenes a docker hub
+        - docker push "${DOCKERHUB_USER}/sitio-web:v1"
+        - docker push "${DOCKERHUB_USER}/api-nodejs:v1"
+    after_script:
+        - docker logout
+        
+deploy:
+    stage: deploy
+    only:
+        - "develop" #indica en que rama se va a ejecutar al momento de un commit o merge 
+    image: docker:latest
+    environment:
+        name: production
+        url: http://52.12.185.15:80/ # indicamos la ruta y puerto en el cual sera publicado al finalizar
+    tags:
+        - docker
+    before_script: # si ya contamos con el container ejecutando, lo usamos para detenerlo
+        #Detener y eliminar los contenedores
+        - docker stop sitio-web
+        - docker rm sitio-web
+
+        - docker stop api-nodejs
+        - docker rm api-nodejs
+
+        #Eliminarción de la red
+        - docker network rm mi_red
+
+        - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_KEY}
+    script:
+        #Creación de la red
+        - docker network create mi_red
+
+        #Creación de los contenedores
+        - docker run -d -p 3000:3000 --network mi_red --restart=always --name=Server_Node ${DOCKERHUB_USER}/api-nodejs:v1
+        - docker run -d -p 80:4200 --network mi_red --restart=always --name=Pagina_Angular ${DOCKERHUB_USER}/sitio-web:v1
+    after_script:
+        - docker logout

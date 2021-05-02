@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+    FrontEnd:
+        container_name: sitio-web
+        restart: always
+        build: ./sitio-web
+        image: cristelmedina/sitio-web:v1
+        ports: 
+            - "4200:4200"
+        depends_on:
+            - BackEnd
+        links: 
+            - BackEnd
+        logging: 
+            driver: none
+    BackEnd:
+        container_name: api-nodejs
+        restart: always
+        build: ./api-nodejs
+        image: cristelmedina/api-nodejs:v1
+        ports: 
+            - "3000:3000"
+        logging: 
+            driver: none

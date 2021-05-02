@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="card bg-light">
+        <h4 class="card-title text-center mt-5">Reporte de Tranferencias</h4>
+        <hr class="mx-5">
+        <article class="card-body mb-5" style="margin-left: 25%; margin-right: 25%;">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Descripción</th>
+                            <th>Crédito</th>
+                            <th>Débito</th>
+                            <th>Saldo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let transferencia of transferencias">
+                            <td>{{ transferencia.fecha }}</td>
+                            <td>{{ transferencia.hora }}</td>
+                            <td>{{ transferencia.descripcion }}</td>
+                            <td>{{ transferencia.credito }}</td>
+                            <td>{{ transferencia.debito }}</td>
+                            <td>{{ transferencia.saldo }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+        <div class="mx-auto">
+            <div class="row mx-5 mb-5">
+                <button type="button" class="btn btn-primary btn-block" (click)="generarPDF()"> <i class="fa fa-download"></i> Descargar PDF</button>
+            </div>
+        </div>
+        <div class="mx-auto">
+            <div class="row mx-5 mb-5">
+                <a routerLink="/home"><button type="submit" class="btn btn-primary btn-block"> <i class="fa fa-home"></i> Inicio</button></a>
+            </div>
+        </div>
+    </div>
+</div>

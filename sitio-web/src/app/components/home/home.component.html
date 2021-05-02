@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="card bg-light">
+        <h4 class="card-title text-center mt-5">Datos Personales</h4>
+        <hr class="mx-5">
+        <article class="card-body mb-5" style="margin-left: 25%; margin-right: 25%;">
+            <form>
+                <div class="row align-items-center">
+                    <div class="col">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            </div>
+                            <div class="form-control  ml-1"> {{this.user.nombres}} {{this.user.apellidos}} </div>
+                        </div>
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                            </div>
+                            <div class="form-control  ml-1"> Correo: {{this.user.correo}} </div>
+                        </div>
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-address-card"></i> </span>
+                            </div>
+                            <div class="form-control  ml-1"> DPI: {{this.user.dpi}} </div>
+                        </div>
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-hashtag"></i> </span>
+                            </div>
+                            <div class="form-control  ml-1"> Número de cuenta: {{this.user.no_cuenta}} </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </article>
+        <div class="mx-auto">
+            <div class="row mx-1 mb-5">
+                <div class="col-4">
+                    <a routerLink="/consulta"><button type="submit" class="btn btn-primary btn-block"> <i class="fa fa-question-circle"></i> Consultar Saldo</button></a>
+                </div>
+                <div class="col-4">
+                    <a routerLink="/transferencia"><button type="submit" class="btn btn-primary btn-block"> <i class="fa fa-arrow-circle-right"></i> Transferencia Monetaria</button></a>
+                </div>
+                <div class="col-4">
+                    <a routerLink="/reporte"><button type="submit" class="btn btn-primary btn-block"> <i class="fa fa-file-pdf"></i> Reporte Cuenta</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

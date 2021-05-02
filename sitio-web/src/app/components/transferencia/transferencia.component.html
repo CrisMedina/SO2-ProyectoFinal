@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="card bg-light">
+        <h4 class="card-title text-center mt-5">Transferencia</h4>
+        <hr class="mx-5">
+        <article class="card-body mb-5" style="margin-left: 25%; margin-right: 25%;">
+            <form>
+                <div class="row align-items-center">
+                    <div class="col">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-hashtag"></i> </span>
+                            </div>
+                            <div class="form-control  ml-1"> No de Cuenta Origen: {{this.user.no_cuenta}} </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                </div>
+                                <input name="cuenta_destino" [(ngModel)]="transferenciaData.no_cuenta_recibe" class="form-control  ml-1" placeholder="No de Cuenta Destino" type="email">
+                            </div>
+                        </div>
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fas fa-money-bill-wave-alt"></i> </span>
+                            </div>
+                            <input name="monto" [(ngModel)]="transferenciaData.monto" class="form-control  ml-1" placeholder="Monto Q." type="email">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </article>
+        <div class="mx-auto">
+            <div class="row mx-5 mb-5">
+                <button name= "transferir" type="submit" class="btn btn-primary btn-block" (click)="transferencia()"> <i class="fa fa-arrow-circle-right"></i> Enviar Transferencia</button>
+            </div>
+        </div>
+        <div class="mx-auto">
+            <div class="row mx-5 mb-5">
+                <a routerLink="/home"><button name= "inicio" type="submit" class="btn btn-primary btn-block"> <i class="fa fa-home"></i> Inicio</button></a>
+            </div>
+        </div>
+        <ngb-alert #selfClosingAlert *ngIf="message" type={{this.alert}} (closed)="message = ''">
+            {{ message }}
+        </ngb-alert>
+    </div>
+</div>

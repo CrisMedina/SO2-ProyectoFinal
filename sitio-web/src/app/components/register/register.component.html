@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="card bg-light">
+        <article class="card-body mx-5 my-5">
+            <h4 class="card-title text-center">Crea tu cuenta</h4>
+            <hr>
+            <form>
+                <div class="form-row">
+                        <div class="form-group input-group col-md-6">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            </div>
+                            <input name="nombres" [(ngModel)]="user.nombres" class="form-control  ml-1" placeholder="Nombres" type="text">
+                        </div>
+                        <div class="form-group input-group col-md-6">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            </div>
+                            <input name="apellidos" [(ngModel)]="user.apellidos" class="form-control  ml-1" placeholder="Apellidos" type="text">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group input-group col-md-6">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-id-card"></i> </span>
+                            </div>
+                            <input name="dpi" [(ngModel)]="user.dpi" class="form-control  ml-1" placeholder="DPI" type="text">
+                        </div>
+                        <div class="form-group input-group col-md-6">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            </div>
+                            <input name="correo" [(ngModel)]="user.correo" class="form-control  ml-1" placeholder="Correo" type="text">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group input-group col-md-6">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            </div>
+                            <input name="no_cuenta" [(ngModel)]="user.no_cuenta" class="form-control  ml-1" placeholder="Número de cuenta" type="text">
+                        </div>
+                        <div class="form-group input-group col-md-6">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            </div>
+                            <input name="saldo" [(ngModel)]="user.saldo_inicial" class="form-control  ml-1" placeholder="Q. Saldo Inicial" type="text">
+                        </div>
+                    </div>
+                        <div class="form-row">
+                    <div class="form-group input-group col-md-6">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                            </div>
+                            <input name="clave" [(ngModel)]="user.clave" class="form-control ml-1" placeholder="Contraseña" type="password">
+                        </div>
+                        <div class="form-group input-group col-md-6">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                            </div>
+                            <input name="confirm" [(ngModel)]="user.confirm" class="form-control ml-1" placeholder="Confirmación" type="password">
+                        </div>
+                    </div>
+                <div class="form-group mt-3">
+                    <button type="submit" class="btn btn-primary btn-block" (click)="createUser()"> Crear cuenta </button>
+                </div>
+                <ngb-alert #selfClosingAlert *ngIf="message" type={{this.alert}} (closed)="message = ''">
+                    {{ message }}
+                  </ngb-alert>
+                <p class="text-center">¿Ya tienes una cuenta? <a href="/">Iniciar Sesión</a></p>
+            </form>
+        </article>
+    </div>
+</div>
